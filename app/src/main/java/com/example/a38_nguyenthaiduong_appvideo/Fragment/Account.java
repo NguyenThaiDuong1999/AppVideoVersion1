@@ -1,4 +1,4 @@
-package com.example.a38_nguyenthaiduong_appvideo;
+package com.example.a38_nguyenthaiduong_appvideo.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,17 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.example.a38_nguyenthaiduong_appvideo.databinding.SearchMusicBinding;
+import com.example.a38_nguyenthaiduong_appvideo.R;
+import com.example.a38_nguyenthaiduong_appvideo.databinding.AccountBinding;
 
-public class Search_Music extends Fragment {
+public class Account extends Fragment {
 
-    SearchMusicBinding binding;
+    AccountBinding binding;
 
-    public static Search_Music newInstance() {
+    public static Account newInstance() {
 
         Bundle args = new Bundle();
 
-        Search_Music fragment = new Search_Music();
+        Account fragment = new Account();
         fragment.setArguments(args);
         return fragment;
     }
@@ -28,7 +29,7 @@ public class Search_Music extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.search_music, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.account, container, false);
 
         return binding.getRoot();
     }

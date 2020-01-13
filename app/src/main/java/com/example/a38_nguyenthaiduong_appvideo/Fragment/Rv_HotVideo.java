@@ -1,4 +1,4 @@
-package com.example.a38_nguyenthaiduong_appvideo;
+package com.example.a38_nguyenthaiduong_appvideo.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,9 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.a38_nguyenthaiduong_appvideo.databinding.RvMainBinding;
+import com.example.a38_nguyenthaiduong_appvideo.Adapter.HotVideoAdapter;
+import com.example.a38_nguyenthaiduong_appvideo.Define.Define;
+import com.example.a38_nguyenthaiduong_appvideo.Object.HotVideo;
+import com.example.a38_nguyenthaiduong_appvideo.R;
+import com.example.a38_nguyenthaiduong_appvideo.databinding.RvHotVideoBinding;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,18 +29,18 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rv_Main extends Fragment {
+public class Rv_HotVideo extends Fragment {
 
-    RvMainBinding binding;
-    List<Video> videos;
-    VideoAdapter videoAdapter;
-    String urlApi = "http://demo4855049.mockable.io/gethotvideo";
+    RvHotVideoBinding binding;
+    List<HotVideo> hotVideos;
+    HotVideoAdapter hotVideoAdapter;
+    String urlApihotvideo = Define.STRING_HOTVIDEO;
 
-    public static Rv_Main newInstance() {
+    public static Rv_HotVideo newInstance() {
 
         Bundle args = new Bundle();
 
-        Rv_Main fragment = new Rv_Main();
+        Rv_HotVideo fragment = new Rv_HotVideo();
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,15 +48,16 @@ public class Rv_Main extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.rv_main, container,false);
-        videos = new ArrayList<>();
-        new DoGetData(urlApi).execute();
-        videoAdapter = new VideoAdapter(videos);
-        binding.rvmain.setAdapter(videoAdapter);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
-        binding.rvmain.setLayoutManager(layoutManager);
+        binding = DataBindingUtil.inflate(inflater, R.layout.rv_hot_video, container, false);
+        hotVideos = new ArrayList<>();
+        new DoGetData(urlApihotvideo).execute();
+        hotVideoAdapter = new HotVideoAdapter(hotVideos);
+        binding.rvhotvideo.setAdapter(hotVideoAdapter);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
+        binding.rvhotvideo.setLayoutManager(layoutManager);
         return binding.getRoot();
     }
+
     class DoGetData extends AsyncTask<Void, Void, Void> {
         String result = "";
         String urlApi;
@@ -63,7 +69,7 @@ public class Rv_Main extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            binding.prBar.setVisibility(View.VISIBLE);
+            binding.prBarHotVideo.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -73,7 +79,7 @@ public class Rv_Main extends Fragment {
                 URLConnection connection = url.openConnection();
                 InputStream is = connection.getInputStream();
                 int byteCharacter;
-                while ((byteCharacter = is.read()) != -1){
+                while ((byteCharacter = is.read()) != -1) {
                     result += (char) byteCharacter;
                 }
             } catch (Exception e) {
@@ -87,14 +93,14 @@ public class Rv_Main extends Fragment {
             super.onPostExecute(aVoid);
             try {
                 JSONArray jsonArray = new JSONArray(result);
-                for (int i=0; i<jsonArray.length(); i++){
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String avatar = jsonObject.getString("avatar");
                     String title = jsonObject.getString("title");
-                    videos.add(new Video(avatar, title));
+                    hotVideos.add(new HotVideo(avatar, title));
                 }
-                videoAdapter.notifyDataSetChanged();
-                binding.prBar.setVisibility(View.GONE);
+                hotVideoAdapter.notifyDataSetChanged();
+                binding.prBarHotVideo.setVisibility(View.GONE);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -4,103 +4,67 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/_50sdp"
             android:orientation="horizontal">
+
             <LinearLayout
-                android:id="@+id/llmusic"
+                android:id="@+id/llhotvideo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:weightSum="3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="3">
+
                 <ImageView
-                    android:src="@drawable/ic_music"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:layout_gravity="center"
                     android:layout_weight="2"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_music" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/music"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/hotvideo"
                     android:textColor="@color/red"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:id="@+id/llgaming"
+                android:id="@+id/llcategory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:weightSum="3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="3">
+
                 <ImageView
-                    android:src="@drawable/ic_videogame"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:layout_gravity="center"
                     android:layout_weight="2"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_videogame" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/gaming"
                     android:layout_gravity="center"
-                    android:textColor="@color/red"
-                    android:textSize="10sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/llnews"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:orientation="vertical">
-                <ImageView
-                    android:src="@drawable/ic_new"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="@string/news"
-                    android:layout_gravity="center"
+                    android:text="@string/category"
                     android:textColor="@color/red"
-                    android:textSize="10sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/llmovies"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:orientation="vertical">
-                <ImageView
-                    android:src="@drawable/ic_movie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/movies"
-                    android:layout_gravity="center"
-                    android:textColor="@color/red"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
+
         <FrameLayout
             android:id="@+id/trendingcontainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="@dimen/_50sdp" />
     </RelativeLayout>
 </layout>

@@ -1,4 +1,4 @@
-package com.example.a38_nguyenthaiduong_appvideo;
+package com.example.a38_nguyenthaiduong_appvideo.Object;
 
 import java.io.Serializable;
 

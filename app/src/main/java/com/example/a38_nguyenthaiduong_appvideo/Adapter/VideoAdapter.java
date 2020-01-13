@@ -1,4 +1,4 @@
-package com.example.a38_nguyenthaiduong_appvideo;
+package com.example.a38_nguyenthaiduong_appvideo.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a38_nguyenthaiduong_appvideo.Interface.IonClickAvatar;
+import com.example.a38_nguyenthaiduong_appvideo.Object.Video;
+import com.example.a38_nguyenthaiduong_appvideo.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,9 +21,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Viewhoder> {
 
     List<Video> videos;
     Context context;
+    IonClickAvatar ionClickAvatar;
 
     public VideoAdapter(List<Video> videos) {
         this.videos = videos;
+    }
+
+    public void setIonClickAvatar(IonClickAvatar ionClickAvatar) {
+        this.ionClickAvatar = ionClickAvatar;
     }
 
     @NonNull
@@ -34,9 +42,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Viewhoder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewhoder holder, int position) {
+    public void onBindViewHolder(@NonNull Viewhoder holder, final int position) {
         final Video video = videos.get(position);
-
         String avatar = video.getAvatar();
         String tenphim = video.getTenphim();
 
@@ -46,7 +53,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Viewhoder> {
         holder.imganhphim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ionClickAvatar.onClickAvatar(video.getTenphim(), position);
             }
         });
 
